@@ -1,6 +1,6 @@
 cls
 Write-Host "Read The README!!!!"
-Start-Sleep -Seconds 3
+Start-Sleep -Seconds 2
 
 
 function Show-Menu
@@ -48,7 +48,7 @@ do
                 Write-Host 'All Done!'
            } '2' {
                 cls
-                $User = Read-Host -Prompt 'Who would you like to remove?'+
+                $User = Read-Host -Prompt 'Who would you like to remove?'
                 Remove-LocalUser -Name $User
            } '3' {
                 cls
