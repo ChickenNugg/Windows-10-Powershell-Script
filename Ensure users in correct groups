@@ -1,0 +1,147 @@
+cls
+Write-Host "Read The README!!!!"
+Start-Sleep -Seconds 3
+
+
+function Show-Menu
+{
+     param (
+           [string]$Title = 'Cyber Patriot Tool Menu V2.0.1'
+     )
+     cls
+     Write-Host "$Title"
+    
+     Write-Host "1: Stop Bad Services"
+     Write-Host "2: Ensure Proper Users *not working*"
+     Write-Host "3: Ensure Proper Groups *not working*"
+     Write-Host "4: Configure Security Policy"
+     Write-Host "5: Block Ports"
+     Write-Host "6: Scan for Bad Files"
+     Write-Host "Q: Press 'Q' to quit."
+}
+do
+{
+     Show-Menu
+     $input = Read-Host "Please make a selection"
+     switch ($input)
+     {
+           '1' {
+                cls
+                Stop-Service W3SVC
+                Set-Service W3SVC -StartupType Disabled
+                Stop-Service Spooler
+                Set-Service Spooler -StartupType Disabled
+                Stop-Service RemoteRegistry
+                Set-Service RemoteRegistry -StartupType Disabled
+                Stop-Service LanmanServer
+                Set-Service LanmanServer -StartupType Disabled
+                Stop-Service SNMPTRAP
+                Set-Service SNMPTRAP -StartupType Disabled
+                Stop-Service SSDPSRV
+                Set-Service SSDPSRV -StartupType Disabled
+                Stop-Service lmhosts
+                Set-Service lmhosts -StartupType Disabled
+                Stop-Service TapiSrv
+                Set-Service TapiSrv -StartupType Disabled
+                Stop-Service upnphost
+                Set-Service upnphost -StartupType Disabled
+                Write-Host 'All Done!'
+           } '2' {
+                cls
+                'Not done'
+           } '3' {
+                cls
+                
+           } '4' {
+                cls
+                secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("PasswordComplexity = 0", "PasswordComplexity = 1")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("MinimumPasswordAge = 0", "MinimumPasswordAge = 10")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                 secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("MinimumPasswordLength = 0", "MinimumPasswordLength = 10")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("PasswordComplexity = 0", "PasswordComplexity = 1")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("PasswordHistorySize = 0", "PasswordHistorySize = 3")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("LockoutBadCount = 0", "LockoutBadCount = 5")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("RequireLogonToChangePassword = 0", "RequireLogonToChangePassword = 1")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("ForceLogoffWhenHourExpire = 0", "ForceLogoffWhenHourExpire = 1")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("PasswordComplexity = 0", "PasswordComplexity = 1")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("AuditSystemEvents = 0", "AuditSystemEvents = 1")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("AuditLogonEvents = 0", "AuditLogonEvents = 0")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                 secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("AuditPolicyChange = 0", "AuditPolicyChange = 1")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                 secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("AuditAccountManage = 0", "AuditAccountManage = 1")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+                 secedit /export /cfg c:\secpol.cfg
+(gc C:\secpol.cfg).replace("LimitBlankPasswordUse=4,0", "LimitBlankPasswordUse=4,1")| Out-File C:\secpol.cfg
+secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
+rm -force c:\secpol.cfg -confirm:$false
+           } '5' {
+                cls
+                New-NetFirewallRule -DisplayName "Block Outbound Port 21" -Direction Outbound -LocalPort 21 -Protocol TCP -Action Block
+                New-NetFirewallRule -DisplayName "Block Outbound Port 22" -Direction Outbound -LocalPort 22 -Protocol TCP -Action Block
+                New-NetFirewallRule -DisplayName "Block Outbound Port 23" -Direction Outbound -LocalPort 23 -Protocol TCP -Action Block
+                New-NetFirewallRule -DisplayName "Block Outbound Port 161" -Direction Outbound -LocalPort 161 -Protocol TCP -Action Block
+                New-NetFirewallRule -DisplayName "Block Outbound Port 3389" -Direction Outbound -LocalPort 3389 -Protocol TCP -Action Block
+                New-NetFirewallRule -DisplayName "Block Outbound Port 636" -Direction Outbound -LocalPort 636 -Protocol TCP -Action Block
+                New-NetFirewallRule -DisplayName "Block Inbound Port 21" -Direction Inbound -LocalPort 21 -Protocol TCP -Action Block
+                New-NetFirewallRule -DisplayName "Block Inbound Port 22" -Direction Inbound -LocalPort 22 -Protocol TCP -Action Block
+                New-NetFirewallRule -DisplayName "Block Inbound Port 23" -Direction Inbound -LocalPort 23 -Protocol TCP -Action Block
+                New-NetFirewallRule -DisplayName "Block Inbound Port 161" -Direction Inbound -LocalPort 161 -Protocol TCP -Action Block
+                New-NetFirewallRule -DisplayName "Block Inbound Port 3389" -Direction Inbound -LocalPort 3389 -Protocol TCP -Action Block
+                New-NetFirewallRule -DisplayName "Block Inbound Port 636" -Direction Inbound -LocalPort 636 -Protocol TCP -Action Block
+           } '6' {
+                cmd.exe cd ..
+                cmd.exe cd ..
+                cmd.exe cd ..
+                DEL "C:\Users\*.mp4" /S /Q 
+                DEL "C:\Users\*.mp3" /S /Q
+                DEL "C:\Users\*.mov" /S /Q
+                DEL "C:\Users\*.wav" /S /Q   
+                DEL "C:\Users\*.png" /S /Q 
+                DEL "C:\Users\*.jpeg" /S /Q    
+                DEL "C:\Users\*.bmp" /S /Q 
+                DEL "C:\Users\*.svg" /S /Q 
+                DEL "C:\Users\*.gif" /S /Q  
+                DEL "C:\Users\*.raw" /S /Q         
+           } 'q' {
+                return
+           }
+     }
+     pause
+}
+until ($input -eq 'q')
