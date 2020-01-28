@@ -47,12 +47,13 @@ do
                 Stop-Service upnphost
                 Set-Service upnphost -StartupType Disabled
                 Write-Host 'All Done!'
-           } '2' {
+ty           } '2' {
                 cls
                 'Not done'
            } '3' {
                 cls
-                'Not done'
+                import-module activedirectory
+                Get-ADGroup -Server localhost:60000 -Filter "GroupScoipe -eq 'DomainLocal'" -SearchBase "DC=AppNC" | Get-ADGroupMember -Partition "DC=AppNC"
            } '4' {
                 cls
                 secedit /export /cfg c:\secpol.cfg
