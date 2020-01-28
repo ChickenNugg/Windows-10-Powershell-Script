@@ -1,7 +1,7 @@
 
 cls
 Write-Host "Read The README!!!!"
-Start-Sleep -Seconds 3
+Start-Sleep -Seconds 1
 
 
 function Show-Menu
