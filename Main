@@ -55,6 +55,13 @@ do
                 cls
                 import-module activedirectory
                 Get-ADGroup -Server localhost:60000 -Filter "GroupScoipe -eq 'DomainLocal'" -SearchBase "DC=AppNC" | Get-ADGroupMember -Partition "DC=AppNC"
+                Write-Host "Above are the people in the Active Directory Groups"
+                Write-Host "."
+                $UserMoved = Read-Host -Prompt "What user would you like to modify?"
+                Start-Sleep -Seconds 1
+                $UserMovedGroup = Read-Host -Prompt "What group would you like to move the user to?"
+                Start-Sleep -Seconds 1
+                Add-LocalGroupMember -Group $UserMovedGroup -Member $UserMoved
            } '4' {
                 cls
                 secedit /export /cfg c:\secpol.cfg
