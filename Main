@@ -47,7 +47,7 @@ do
                 Stop-Service upnphost
                 Set-Service upnphost -StartupType Disabled
                 Write-Host 'All Done!'
-ty           } '2' {
+                } '2' {
                 cls
                 'Not done'
            } '3' {
