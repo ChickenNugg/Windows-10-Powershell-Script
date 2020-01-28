@@ -49,7 +49,8 @@ do
                 Write-Host 'All Done!'
            } '2' {
                 cls
-                'Not done'
+                $User = Read-Host -Prompt "Which user would you like to remove?"
+                Remove-LocalUser -name $User
            } '3' {
                 cls
                 'Not done'
