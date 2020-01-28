@@ -13,8 +13,8 @@ function Show-Menu
      Write-Host "$Title"
     
      Write-Host "1: Stop Bad Services"
-     Write-Host "2: Ensure Proper Users *not working*"
-     Write-Host "3: Ensure Proper Groups *not working*"
+     Write-Host "2: Ensure Proper Users"
+     Write-Host "3: Ensure Proper Groups *WIP*"
      Write-Host "4: Configure Security Policy"
      Write-Host "5: Block Ports"
      Write-Host "6: Scan for Bad Files"
@@ -53,7 +53,8 @@ do
                 Remove-LocalUser -name $User
            } '3' {
                 cls
-                'Not done'
+                import-module activedirectory
+                Get-ADGroup -Server localhost:60000 -Filter "GroupScoipe -eq 'DomainLocal'" -SearchBase "DC=AppNC" | Get-ADGroupMember -Partition "DC=AppNC"
            } '4' {
                 cls
                 secedit /export /cfg c:\secpol.cfg
